@@ -1,0 +1,42 @@
+/*
+  Flavio Caria
+  09/02/2015
+  Accensione di un led con un bottone in Arduino Leonardo
+ */
+
+const int led = 13;
+const int button = 5;
+int buttonState = 0;
+int lastButtonState = 0;
+int buttonPushCounter = 0;
+
+void setup() {
+  pinMode(led, OUTPUT);
+  pinMode(button, INPUT);
+}
+
+// the loop function runs over and over again forever
+void loop() 
+{
+  buttonState = digitalRead(button);
+  
+  if(buttonState != lastButtonState)
+  { 
+    if(buttonState == HIGH) 
+    {
+      buttonPushCounter++;
+    }
+  }
+  lastButtonState = buttonState;
+  
+  if(buttonPushCounter % 2 == 0)
+  {
+    digitalWrite(led, HIGH);
+  }
+    else
+    {
+      digitalWrite(led, LOW);
+    }
+
+
+}
